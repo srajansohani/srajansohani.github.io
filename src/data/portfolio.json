@@ -1,0 +1,127 @@
+{
+  "personalInfo": {
+    "name": "Srajan Sohani",
+    "role": "Software Developer",
+    "bio": "I am a software developer with a passion for building scalable web applications and solving complex problems. I love working with modern technologies and continuously learning.",
+    "email": "srajansohani999@gmail.com",
+    "location": "India",
+    "image": "/my-photo.jpeg"
+  },
+  "socials": [
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/srajansohani",
+      "icon": "Github"
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "linkedin.com/in/srajan-sohani-589448223/?skipRedirect=true",
+      "icon": "Linkedin"
+    },
+    {
+      "platform": "Twitter",
+      "url": "https://twitter.com/",
+      "icon": "Twitter"
+    }
+  ],
+  "education": [
+    {
+      "school": "Shri Govindram Seksariya Institute Of Technology and Sciences, Indore",
+      "degree": "B.Tech in Computer Science & Engineering",
+      "duration": "2021 - 2025",
+      "grade": "7.60/10 CGPA"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Hyperflex",
+      "role": "Software Engineering Intern",
+      "duration": "Jan 2025 - Present",
+      "location": "Pune",
+      "description": [
+        "Built an automated Elastic Upgradation Tool using Node.js, React, MongoDB, and Ansible to streamline on-premise Elasticsearch cluster upgrades.",
+        "Worked extensively with the Elastic Stack (cluster management, real-time processing) and assisted in Splunk-to-Elastic migration tool development."
+      ]
+    },
+    {
+      "company": "Deutsche Bank",
+      "role": "Technology Development Intern, Risk Division",
+      "duration": "May 2024 - July 2024",
+      "location": "Pune",
+      "description": [
+        "Implemented WebSocket-based real-time alerts in Remedy service, reducing system alert latency from 10s to <1s.",
+        "Used Kafka for broadcasting notifications across pods, ensuring 95%+ message delivery and high availability.",
+        "Optimized data retrieval via GraphQL-based DAL and improved database schema for 50% faster, more secure workflows.",
+        "Deployed apps on Fabric, Deutsche Bank's proprietary cloud, gaining DevOps experience."
+      ]
+    },
+    {
+      "company": "Consultadd",
+      "role": "Software Engineering Intern",
+      "duration": "Jan 2023 - July 2023",
+      "location": "Remote",
+      "description": [
+        "Developed features and fixed 50+ bugs in internal CRM/HRIS tools using React and Redux.",
+        "Migrated to functional components, reducing maintenance by 10+ hrs/week and improving performance.",
+        "Implemented debounced search, API caching, and infinite scroll, cutting server load by 25%.",
+        "Added notification system via Service Workers + Firebase, boosting interactivity by 20%."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "ONLINE-CODING-PLATFORM",
+      "description": "Developed with a React frontend and a RESTful express backend, allowing users to run code, solve coding problems and participate in contests. Used JWT for authentication, RabbitMQ for communication, and Redis for polling mechanism.",
+      "technologies": ["React", "Express", "RabbitMQ", "Redis", "JWT"],
+      "link": "#",
+      "github": "#"
+    },
+    {
+      "title": "BLOG-THE-CHANGE",
+      "description": "A GitHub Action that utilizes the capabilities of Gemini's LLM to produce blog summaries of the changes introduced by a commit in a repository on Hashnode. Uses Octokit for git diff and tagging automation.",
+      "technologies": ["GitHub Actions", "Gemini API", "Octokit"],
+      "link": "#",
+      "github": "#"
+    }
+  ],
+  "skills": {
+    "Technical Skills": [
+      {
+        "category": "Languages",
+        "items": ["Python", "Java", "C++", "JavaScript", "TypeScript"]
+      },
+      {
+        "category": "Backend",
+        "items": ["Springboot", "Node.js", "Express.js"]
+      },
+      {
+        "category": "Frontend",
+        "items": ["React", "TailwindCSS", "HTML", "CSS", "Bootstrap", "Angular"]
+      },
+      {
+        "category": "Clouds & Databases",
+        "items": ["AWS", "PostgreSQL", "MongoDB"]
+      },
+      {
+        "category": "Web Technologies",
+        "items": ["Docker", "Socket.IO", "Redis"]
+      },
+      {
+        "category": "Developer Tools",
+        "items": ["Postman", "VS Code", "GitHub", "Xcode"]
+      }
+    ],
+    "Achievements": [
+      "Solved 700+ DSA problems from GFG, Leetcode, Codechef, codeforces.",
+      "Rated 1800+ on Leetcode",
+      "HacktoberFest 22 Contributor",
+      "Completed CourseWorks - Computer Networks, DBMS, Computer Architecture, Agile Methodology",
+      "Selected for Indian National Maths Olympiad (Among 30 students from state)"
+    ],
+    "Others": [
+      { "category": "DevOps", "items": ["CI/CD", "Docker"] },
+      { "category": "Tools", "items": ["Git", "JIRA"] },
+      { "category": "Methodologies", "items": ["Agile", "Scrum"] }
+    ]
+  }
+}
