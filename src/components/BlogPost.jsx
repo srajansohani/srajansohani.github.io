@@ -15,7 +15,6 @@ export default function BlogPost() {
     );
     if (file) {
       posts[file]().then(raw => {
-        // Extract frontmatter
         const match = raw.match(/^---([\s\S]*?)---/);
         let meta = {};
         let body = raw;
@@ -32,25 +31,23 @@ export default function BlogPost() {
     }
   }, [slug]);
 
-  if (!content) return <div className="min-h-screen flex items-center justify-center text-gray-700">Loading...</div>;
+  if (!content) return <div className="min-h-[70vh] flex items-center justify-center text-gray-500 font-medium">Loading Post...</div>;
 
   return (
-    <section className="py-16 md:py-20 bg-white min-h-screen">
-      <div className="container mx-auto px-4 max-w-3xl lg:max-w-4xl">
-        <Link to="/blog" className="text-blue-600 hover:underline mb-6 inline-block font-semibold text-base">← Back to Blog</Link>
-        <h1 className="text-3xl md:text-4xl font-bold mb-3 text-gray-800 leading-tight">{meta.title}</h1>
-        <div className="flex items-center text-sm text-gray-500 mb-8 space-x-3">
-          {meta.date && <span className="flex items-center"><i className="far fa-calendar-alt mr-1"></i> {meta.date}</span>}
-          {meta.comments !== undefined && <span className="flex items-center"><i className="far fa-comment-dots mr-1"></i> {meta.comments} Comments</span>}
+    <section className="py-20 bg-white min-h-screen">
+      <div className="container mx-auto px-4 max-w-3xl">
+        <Link to="/blog" className="text-[#0ea5e9] hover:text-[#d4af37] transition-colors mb-8 inline-flex items-center font-bold text-sm uppercase tracking-widest">
+          ← Back to Articles
+        </Link>
+        <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900 leading-tight tracking-tight">{meta.title}</h1>
+        <div className="flex flex-wrap items-center text-sm font-semibold text-gray-400 mb-10 gap-x-6 gap-y-2 uppercase tracking-wide">
+          {meta.date && <span className="flex items-center text-[#d4af37]">{meta.date}</span>}
+          {meta.readTime && <span className="flex items-center">{meta.readTime}</span>}
         </div>
-        <div className="prose max-w-none prose-lg leading-relaxed text-gray-700 prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:text-base prose-ul:text-base prose-li:text-base prose-a:text-blue-600 hover:prose-a:underline">
+        
+        <div className="markdown-content">
            <ReactMarkdown>{content}</ReactMarkdown>
         </div>
-        {/* Optional: Add a section for 'You May Also Like' blog posts if you want */}
-         {/* <div className="mt-12 pt-8 border-t border-gray-200">
-           <h3 className="text-2xl font-bold mb-6 text-gray-800">You May Also Like...</h3>
-           {/* Add related blog post previews here */}
-         {/* </div> */}
       </div>
     </section>
   );
