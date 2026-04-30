@@ -15,13 +15,8 @@
     },
     {
       "platform": "LinkedIn",
-      "url": "linkedin.com/in/srajan-sohani-589448223/?skipRedirect=true",
+      "url": "https://linkedin.com/in/srajan-sohani-589448223",
       "icon": "Linkedin"
-    },
-    {
-      "platform": "Twitter",
-      "url": "https://twitter.com/",
-      "icon": "Twitter"
     }
   ],
   "education": [
@@ -80,23 +75,29 @@
       ]
     }
   ],
-  "publications": [
-    {
-      "title": "Towards Understanding Deep Neural Networks in the Context of Agentic AI",
-      "conference": "International Conference on Machine Learning (ICML 2026)",
-      "date": "July 2026",
-      "link": "#",
-      "description": "An exploratory paper defining how agents execute deterministic logic autonomously using integrated feedback loops."
-    }
-  ],
+  "publications": [],
   "projects": [
+    
     {
       "title": "SEAMLESS UPGRADE TOOL",
       "description": "A robust, containerized Java and React application built for automating and managing the seamless, one-click upgrade of on-premise Elasticsearch clusters. It features a real-time monitoring dashboard for tracking cluster health and integrates deeply with Ansible playbooks for zero-downtime node migrations.",
       "technologies": ["Java", "Spring Boot", "React", "Ansible", "Elasticsearch", "Docker"],
       "link": "https://github.com/ConsultaddHQ/elastic-seamless-upgrade-tool",
       "github": "https://github.com/ConsultaddHQ/elastic-seamless-upgrade-tool",
+      "setupLink": "https://consultaddhq.github.io/elastic-seamless-upgrade-tool/docs/usage/installation",
+      "image": "/projects/seamless-upgrade.png",
+      "hasLiveSite": false,
       "caseStudy": "### The Challenge\nUpgrading on-premise Elasticsearch clusters is a traditionally fragile, manual process prone to human error and unacceptable downtime. Organizations need a way to perform rolling upgrades securely and efficiently.\n\n### The Solution\nDuring my internship at Hyperflex, I engineered the **Seamless Upgrade Tool**. Built with a robust Java (Spring Boot) backend and an interactive React dashboard, this containerized tool serves as a centralized orchestrator for node upgrades.\n\n### Key Technical Achievements\n\n- **Ansible Automation:** The Java backend integrates tightly with Ansible playbooks, executing rolling upgrades sequentially across individual nodes.\n- **Real-Time Monitoring UI:** The React dashboard consumes live metrics via WebSocket, visualizing cluster health, shard allocation, and live upgrade statuses.\n- **Zero-Downtime Design:** The tool automates critical shard routing and index management tasks right before taking a node offline, ensuring zero data loss and constant cluster availability."
+    },
+    {
+      "title": "ACTIONLY",
+      "description": "An AI-powered Chrome Extension that acts as an executive assistant for Gmail and Google Calendar. It uses Google's Gemini AI to intelligently triage your inbox, convert actionable emails into structured task cards with step-by-step action items, and generate meeting prep checklists from your calendar events.",
+      "technologies": ["Node.js", "TypeScript", "Gemini AI", "Chrome Extension", "MongoDB", "Google APIs"],
+      "link": "https://github.com/srajansohani/Actionly",
+      "github": "https://github.com/srajansohani/Actionly",
+      "video": "https://www.loom.com/share/0215a02b9bc64689beda24b29f9226cc",
+      "image": "/projects/actionly.png",
+      "caseStudy": "### The Problem\nKnowledge workers lose hours every week triaging email and preparing for meetings manually. Actionly was built to eliminate this overhead using AI.\n\n### What It Does\n- **AI Email Triage**: Gemini 2.0 Flash scans your inbox and identifies only actionable emails, ignoring promotions and spam.\n- **Smart Task Cards**: Each actionable email becomes a structured task with title, priority, deadline, and a step-by-step AI-generated action checklist.\n- **Meeting Prep**: Reads your Google Calendar and auto-generates preparation checklists for upcoming meetings.\n- **Smart Notifications**: Sends a 30-minute prep nudge and a 5-minute join alert before every meeting.\n\n### Technical Architecture\nThe system consists of two components — a Chrome Extension (Manifest V3) and a Node.js + TypeScript backend.\n\n- **AI Layer**: Integrates with Google Gemini 2.0 Flash via `@google/generative-ai` for email analysis and task generation.\n- **Auth**: Secure OAuth 2.0 flow via Google Cloud, with token refresh handled server-side.\n- **Storage**: MongoDB Atlas stores users, emails, and action items. Supports a file-based fallback for development.\n- **BYOK Support**: Users can supply their own Gemini API key for personal quota management.\n- **Rate Limiting**: Emails are processed sequentially with smart delays to stay within Gemini free-tier rate limits."
     },
     {
       "title": "ONLINE-CODING-PLATFORM",
@@ -104,6 +105,7 @@
       "technologies": ["React", "Express", "RabbitMQ", "Redis", "JWT", "JavaScript"],
       "link": "https://ocp-frontend.vercel.app",
       "github": "https://github.com/srajansohani/ocp-frontend",
+      "image": "/projects/ocp.png",
       "caseStudy": "### The Challenge\nBuilding a fully-functional competitive coding platform requires executing un-trusted user code securely while maintaining incredibly low latencies under high request loads (like during a live coding contest).\n\n### The Architecture\nI designed a highly scalable system divided into three main components: a **React Frontend**, a **Main Express API**, and an isolated **Compiler Worker**. \n\n### Technical Highlights\n\n- **Message Queueing with RabbitMQ:** To handle a surge of code submissions without crashing the main API, submissions are offloaded to a RabbitMQ message queue.\n- **Caching & Real-Time Polling:** Redis is used as an ultra-fast in-memory data store. The frontend polls Redis to get real-time compiler execution results with minimal latency.\n- **Secure Execution Environment:** The worker executes code securely, isolating environments to prevent malicious code from accessing the host OS."
     },
     {
@@ -111,55 +113,68 @@
       "description": "A comprehensive rebuild of a GPT-style language model from the ground up. Moving beyond basic reproduction, this project explores advanced LLM architectures through custom implementations of transformer components like GELU activations, Layer Normalization, and varied attention mechanisms. Built entirely in Python with PyTorch.",
       "technologies": ["Python", "PyTorch", "Deep Learning", "LLMs"],
       "link": "https://github.com/srajansohani/gpt-from-scratch",
-      "github": "https://github.com/srajansohani/gpt-from-scratch"
+      "github": "https://github.com/srajansohani/gpt-from-scratch",
+      "image": "/projects/gpt-from-scratch.png",
+      "status": "in-progress",
+      "hasLiveSite": false
     },
     {
       "title": "BLOG-THE-CHANGE",
       "description": "An intelligent, automated DevOps tool built as a GitHub Action. It integrates Google's Gemini LLM with the Hashnode API to automatically analyze Git diffs and generate rich, context-aware blog posts summarizing code commits. Built using TypeScript and Octokit for seamless CI/CD workflow automation.",
       "technologies": ["GitHub Actions", "Gemini API", "Octokit", "TypeScript"],
-      "link": "https://github.com/srajansohani/BLOG-THE-CHANGE",
-      "github": "https://github.com/srajansohani/BLOG-THE-CHANGE"
+      "link": "https://github.com/marketplace/actions/hash-blog",
+      "github": "https://github.com/srajansohani/BLOG-THE-CHANGE",
+      "image": "/projects/blog-the-change.png"
     },
     {
       "title": "VIRTUAL WORLD DRIVING CARS",
       "description": "An interactive, browser-based driving simulation featuring custom 2D physics and visual rendering engines. Built entirely with vanilla JavaScript and the HTML5 Canvas API, demonstrating advanced concepts in game loops, kinematics, and spatial rendering.",
       "technologies": ["JavaScript", "HTML5 Canvas", "Physics Engine"],
       "link": "https://github.com/srajansohani/virtual-world-driving-cars",
-      "github": "https://github.com/srajansohani/virtual-world-driving-cars"
+      "github": "https://github.com/srajansohani/virtual-world-driving-cars",
+      "image": "/projects/virtual-cars.png"
     },
     {
       "title": "RETAIL PULSE IMAGE PROCESSING",
       "description": "A highly concurrent image processing pipeline engineered in Go. Designed specifically for retail analytics, it rapidly processes bulk shelf imagery to identify product placements and extract insights using advanced computer vision techniques, capitalizing on Go's speed and goroutines.",
       "technologies": ["Go", "Image Processing", "Computer Vision"],
       "link": "https://github.com/srajansohani/retail-pulse-image-processing",
-      "github": "https://github.com/srajansohani/retail-pulse-image-processing"
+      "github": "https://github.com/srajansohani/retail-pulse-image-processing",
+      "image": "/projects/retail-pulse.png"
+    },
+    {
+      "title": "ADVERSARIAL AUTOENCODER (AAE)",
+      "description": "A state-of-the-art implementation of a Generalized Adversarial Autoencoder (AAE), pretrained on ImageNet-1k, and engineered specifically to enhance Transfer Learning performance. It features a modular architecture with an integrated discriminator for latent space regularization and a rich visualization suite including T-SNE embeddings and distribution plots.",
+      "technologies": ["Python", "PyTorch", "Deep Learning", "ImageNet", "GANs"],
+      "link": "https://github.com/srajansohani/aae",
+      "github": "https://github.com/srajansohani/aae",
+      "image": "/projects/aae.png",
+      "status": "in-progress",
+      "hasLiveSite": false,
+      "caseStudy": "### The Challenge\nConventional Autoencoders and Variational Autoencoders (VAEs) often struggle to produce features that generalize effectively across diverse and unrelated domains, making transfer learning less efficient.\n\n### The Solution\nI implemented a **Generalized Adversarial Autoencoder** that combines the generative power of GANs with the reconstruction efficiency of Autoencoders. By using an adversarial training mechanism, the model forces the latent space to follow a desired prior distribution, resulting in more robust and transferable features.\n\n### Key Technical Highlights\n- **Pretrained on ImageNet-1k**: Leverages large-scale data for high-quality feature extraction.\n- **Adversarial Latent Regularization**: Employs a Discriminator network to regularize the latent space towards a Gaussian prior.\n- **Multi-Phase Training**: Includes reconstruction, adversarial, and classification phases for holistic model optimization.\n- **Advanced Visualization**: Integrated T-SNE projections and real-time TensorBoard monitoring for training stability analysis."
     }
   ],
   "skills": {
     "Technical Skills": [
       {
         "category": "Languages",
-        "items": ["Python", "Java", "C++", "JavaScript", "TypeScript"]
+        "items": ["Python", "Java", "Go", "JavaScript", "TypeScript", "C++", "SQL"]
       },
       {
         "category": "Backend",
-        "items": ["Springboot", "Node.js", "Express.js"]
+        "items": ["Spring Boot", "Node.js", "Express.js", "REST APIs", "WebSockets"]
       },
       {
         "category": "Frontend",
-        "items": ["React", "TailwindCSS", "HTML", "CSS", "Bootstrap", "Angular"]
+        "items": ["React", "TailwindCSS", "HTML5 Canvas", "Redux", "Framer Motion"]
       },
       {
         "category": "Clouds & Databases",
-        "items": ["AWS", "PostgreSQL", "MongoDB"]
+        "items": ["AWS", "PostgreSQL", "MongoDB", "Elasticsearch", "Redis"]
       },
       {
-        "category": "Web Technologies",
-        "items": ["Docker", "Socket.IO", "Redis"]
-      },
-      {
-        "category": "Developer Tools",
-        "items": ["Postman", "VS Code", "GitHub", "Xcode"]
+        "category": "AI/ML",
+        "items": ["PyTorch", "Deep Learning", "LLMs", "Gemini API", "GANs", "Computer Vision"]
       }
     ],
     "Achievements": [
@@ -170,9 +185,9 @@
       "Selected for Indian National Maths Olympiad (Among 30 students from state)"
     ],
     "Others": [
-      { "category": "DevOps", "items": ["CI/CD", "Docker"] },
-      { "category": "Tools", "items": ["Git", "JIRA"] },
-      { "category": "Methodologies", "items": ["Agile", "Scrum"] }
+      { "category": "DevOps", "items": ["Docker", "Ansible", "GitHub Actions", "CI/CD", "Octokit"] },
+      { "category": "Tools", "items": ["Git", "GitHub", "Postman", "VS Code", "JIRA"] },
+      { "category": "Methodologies", "items": ["Agile", "Scrum", "SDLC"] }
     ]
   }
 }

@@ -72,9 +72,9 @@ But it also exposed the hidden complexity of upgrades.
 ## Screenshot: Early UI / First Prototype
 
 
-![Early Prototype UI 1](public/blogs/seamless-ui-1.png)
+![Early Prototype UI 1](/blogs/seamless-ui-1.png)
 
-![Early Prototype UI 2](public/blogs/seamless-ui-2.png)
+![Early Prototype UI 2](/blogs/seamless-ui-2.png)
 
 *Caption: The early version of the tool focused on basic cluster discovery and upgrade execution.*
 
@@ -159,7 +159,7 @@ That is when we realized we needed a **single source of truth for workflow state
 ### Screenshot: Webhook-Based Flow
 
 
-![Old Webhook Architecture](public/blogs/old-architecture-seamless.png)
+![Old Webhook Architecture](/blogs/old-architecture-seamless.png)
 
 *Caption: The first architecture used webhooks from Ansible playbooks to notify the backend after each task.*
 
@@ -297,7 +297,7 @@ Add screenshots here showing the live terminal-style logs and the step-by-step u
 
 The Java modular architecture with ad-hoc Ansible execution gave us much better control than the earlier webhook-based setup.
 
-![New Architecture](public/blogs/seamless-architecture.png)
+![New Architecture](/blogs/seamless-architecture.png)
 
 *Caption: The current architecture uses Java as the orchestration layer, MongoDB for workflow state, and Ansible Ad-Hoc commands for granular execution.*
 

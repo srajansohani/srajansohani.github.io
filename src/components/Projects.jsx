@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Play, Code } from 'lucide-react';
+import { Github, Play, Code, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import portfolioData from '../data/portfolio.json';
 
@@ -31,9 +31,27 @@ function Projects() {
             >
               {/* Image Preview Area */}
               <div className="h-56 bg-gray-50 relative overflow-hidden flex-shrink-0 group-hover:bg-[#f6f0dd] transition-colors duration-500">
-                  <div className="absolute inset-0 flex items-center justify-center text-gray-300 group-hover:text-[#d4af37]/50 transition-colors duration-500">
-                    <Code size={64} strokeWidth={1} />
-                  </div>
+                  {project.image ? (
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-gray-300 group-hover:text-[#d4af37]/50 transition-colors duration-500">
+                      <Code size={64} strokeWidth={1} />
+                    </div>
+                  )}
+                  
+                  {/* Status Badge */}
+                  {project.status === 'in-progress' && (
+                    <div className="absolute top-4 left-4 z-20">
+                      <span className="px-3 py-1 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest rounded-full border border-white/20">
+                        In Progress
+                      </span>
+                    </div>
+                  )}
+
                   <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/5 to-transparent"></div>
               </div>
               
@@ -56,11 +74,19 @@ function Projects() {
                 </div>
 
                 <div className="flex items-center gap-3 mt-auto">
-                  <a href={project.link} target="_blank" rel="noreferrer" className="flex-1 flex justify-center items-center gap-2 px-4 py-2.5 bg-[#d4af37] text-white font-semibold rounded-xl hover:bg-[#c29e2f] transition-all duration-300 shadow-md shadow-[#d4af37]/20">
-                    <Play size={16} fill="currentColor"/>
-                    Try It
-                  </a>
-                  <Link to={`/project/${generateSlug(project.title)}`} className="flex-1 flex justify-center items-center gap-2 px-4 py-2.5 bg-white text-gray-700 font-semibold rounded-xl border border-gray-300 hover:bg-gray-50 hover:text-gray-900 transition-all duration-300">
+                  {project.hasLiveSite !== false && project.link && (
+                    <a href={project.link} target="_blank" rel="noreferrer" className="flex-1 flex justify-center items-center gap-2 px-4 py-2.5 bg-[#d4af37] text-white font-semibold rounded-xl hover:bg-[#c29e2f] transition-all duration-300 shadow-md shadow-[#d4af37]/20">
+                      <Play size={16} fill="currentColor"/>
+                      Try It
+                    </a>
+                  )}
+                  {project.hasLiveSite === false && project.setupLink && (
+                    <a href={project.setupLink} target="_blank" rel="noreferrer" className="flex-1 flex justify-center items-center gap-2 px-4 py-2.5 bg-[#0ea5e9] text-white font-semibold rounded-xl hover:bg-[#0284c7] transition-all duration-300 shadow-md shadow-[#0ea5e9]/20">
+                      <BookOpen size={16} />
+                      Setup
+                    </a>
+                  )}
+                  <Link to={`/project/${generateSlug(project.title)}`} className={`flex-1 flex justify-center items-center gap-2 px-4 py-2.5 bg-white text-gray-700 font-semibold rounded-xl border border-gray-300 hover:bg-gray-50 hover:text-gray-900 transition-all duration-300 ${(!project.link || project.hasLiveSite === false) && !project.setupLink ? 'w-full' : ''}`}>
                     Know More
                   </Link>
                 </div>

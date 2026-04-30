@@ -7,23 +7,41 @@ import portfolioData from '../data/portfolio.json';
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      // Detect active section
+      const sections = ['home', 'about', 'projects', 'contact'];
+      const scrollPosition = window.scrollY + 100; // Offset for header
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const height = element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { name: 'About', to: '/#about' },
-    { name: 'Projects', to: '/#projects' },
-    { name: 'Publications', to: '/#publications' },
+    { name: 'About', to: '/#about', id: 'about' },
+    { name: 'Projects', to: '/#projects', id: 'projects' },
     { name: 'Blog', to: '/blog', isRouterLink: true },
     { name: 'Resume', to: '/resume', isRouterLink: true },
-    { name: 'Contact', to: '/#contact' },
+    { name: 'Contact', to: '/#contact', id: 'contact' },
   ];
 
   return (
@@ -41,7 +59,10 @@ function Navbar() {
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-1 items-center">
           {navLinks.map((link) => {
-            const isActive = location.pathname + location.hash === link.to;
+            const isActive = link.isRouterLink 
+              ? location.pathname === link.to 
+              : activeSection === link.id;
+            
             const linkClasses = `px-4 py-2 rounded-full font-medium transition-all duration-200 ${isActive ? 'bg-[#d4af37] text-white shadow-md' : 'text-gray-600 hover:text-[#d4af37] hover:bg-gray-50'}`;
             
             return (
@@ -67,7 +88,10 @@ function Navbar() {
         <div className="md:hidden absolute top-20 left-4 right-4 bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 overflow-hidden transform origin-top">
           <ul className="flex flex-col py-2 px-2 space-y-1">
             {navLinks.map((link) => {
-               const isActive = location.pathname + location.hash === link.to;
+               const isActive = link.isRouterLink 
+                 ? location.pathname === link.to 
+                 : activeSection === link.id;
+               
                const linkClasses = `block px-4 py-3 rounded-xl font-medium transition-colors ${isActive ? 'bg-[#d4af37]/10 text-[#d4af37]' : 'text-gray-700 hover:bg-gray-50'}`;
                return (
                 <li key={link.name}>

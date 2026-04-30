@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, ArrowLeft, Code } from 'lucide-react';
+import { Github, ExternalLink, ArrowLeft, Code, BookOpen } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import portfolioData from '../data/portfolio.json';
 
@@ -32,13 +32,25 @@ function ProjectDetail() {
   return (
     <div className="bg-white min-h-screen pb-20">
       {/* Huge Hero Header */}
-      <section className="pt-32 pb-16 md:pt-48 md:pb-24 bg-gray-50 border-b border-gray-100 relative overflow-hidden">
-        {/* Subtle decorative background */}
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[#d4af37]/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 -ml-20 w-72 h-72 bg-[#0ea5e9]/5 rounded-full blur-3xl"></div>
+      <section 
+        className={`pt-32 pb-16 md:pt-48 md:pb-24 border-b border-gray-100 relative overflow-hidden transition-colors duration-500 ${project.image ? 'text-white bg-gray-900' : 'bg-gray-50'}`}
+        style={project.image ? { 
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${project.image})`, 
+          backgroundSize: 'cover', 
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        } : {}}
+      >
+        {/* Subtle decorative background - only show if no image */}
+        {!project.image && (
+          <>
+            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-[#d4af37]/5 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 -ml-20 w-72 h-72 bg-[#0ea5e9]/5 rounded-full blur-3xl"></div>
+          </>
+        )}
 
         <div className="container mx-auto px-4 max-w-5xl relative z-10">
-          <Link to="/#projects" className="inline-flex items-center text-gray-500 hover:text-[#d4af37] transition-colors mb-10 font-bold text-xs uppercase tracking-widest group">
+          <Link to="/#projects" className={`inline-flex items-center transition-colors mb-10 font-bold text-xs uppercase tracking-widest group ${project.image ? 'text-gray-300 hover:text-[#d4af37]' : 'text-gray-500 hover:text-[#d4af37]'}`}>
             <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform" />
             All Projects
           </Link>
@@ -48,23 +60,39 @@ function ProjectDetail() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight tracking-tighter mb-8">
+            <h1 className={`text-5xl md:text-7xl font-extrabold leading-tight tracking-tighter mb-8 ${project.image ? 'text-white' : 'text-gray-900'}`}>
               {project.title}
             </h1>
 
-            <div className="grid md:grid-cols-4 gap-8 md:border-l-2 border-gray-200 md:pl-8">
-              <div className="md:col-span-3 text-lg md:text-xl text-gray-600 font-medium leading-relaxed">
+            <div className={`grid md:grid-cols-4 gap-8 md:border-l-2 md:pl-8 ${project.image ? 'border-white/20' : 'border-gray-200'}`}>
+              <div className={`md:col-span-3 text-lg md:text-xl font-medium leading-relaxed ${project.image ? 'text-gray-200' : 'text-gray-600'}`}>
                  {project.description}
               </div>
               <div className="md:col-span-1 flex flex-col gap-4 justify-center">
-                 <a href={project.link} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 px-6 py-3.5 bg-[#d4af37] text-white font-bold rounded-2xl hover:bg-[#c29e2f] transition-all duration-300 shadow-xl shadow-[#d4af37]/20 transform hover:-translate-y-1">
-                  Live Site
-                  <ExternalLink size={18} />
-                 </a>
+                 {project.hasLiveSite !== false && project.link && (
+                   <a href={project.link} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 px-6 py-3.5 bg-[#d4af37] text-white font-bold rounded-2xl hover:bg-[#c29e2f] transition-all duration-300 shadow-xl shadow-[#d4af37]/20 transform hover:-translate-y-1">
+                    Live Site
+                    <ExternalLink size={18} />
+                   </a>
+                 )}
+                 {project.setupLink && (
+                    <a href={project.setupLink} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 px-6 py-3.5 bg-[#0ea5e9] text-white font-bold rounded-2xl hover:bg-[#0284c7] transition-all duration-300 shadow-xl shadow-[#0ea5e9]/20 transform hover:-translate-y-1">
+                      <BookOpen size={18} />
+                      Setup Guide
+                    </a>
+                  )}
                  <a href={project.github} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 px-6 py-3.5 bg-gray-900 text-white font-bold rounded-2xl hover:bg-gray-800 transition-all duration-300 shadow-xl transform hover:-translate-y-1">
                   <Github size={18} />
                   GitHub
                  </a>
+                 {project.video && (
+                    <button 
+                      onClick={() => document.getElementById('demo-video')?.scrollIntoView({ behavior: 'smooth' })}
+                      className="flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-[#d4af37] font-bold rounded-2xl border-2 border-[#d4af37]/20 hover:border-[#d4af37] hover:bg-[#d4af37]/5 transition-all duration-300 shadow-lg transform hover:-translate-y-1"
+                    >
+                      Watch Demo
+                    </button>
+                  )}
               </div>
             </div>
           </motion.div>
@@ -91,7 +119,45 @@ function ProjectDetail() {
             </div>
           </motion.div>
 
+          {/* Demo Video Section */}
+          {project.video && (
+            <motion.div 
+              id="demo-video"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-20"
+            >
+              <h2 className="text-3xl font-bold mb-8 text-gray-900 flex items-center gap-3">
+                <span className="w-8 h-1 bg-[#d4af37] rounded-full"></span>
+                Product Demo
+              </h2>
+              <div className="bg-black rounded-3xl overflow-hidden shadow-2xl border border-gray-800 aspect-video relative group">
+                {project.video.includes('drive.google.com') || project.video.includes('loom.com') || project.video.includes('youtube.com') ? (
+                  <iframe 
+                    src={project.video.replace('/view', '/preview').replace('loom.com/share/', 'loom.com/embed/')}
+                    className="w-full h-full border-0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                ) : (
+                  <video 
+                    src={project.video} 
+                    controls 
+                    className="w-full h-full object-contain"
+                    poster={project.videoPoster || ""}
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                )}
+              </div>
+            </motion.div>
+          )}
+
           {/* Expansive Project Visuals & Case Study */}
+          {/* Cover Image removed from here as it's now the Hero Background */}
+
           {project.caseStudy ? (
             <motion.div 
               initial={{ opacity: 0, y: 30 }}

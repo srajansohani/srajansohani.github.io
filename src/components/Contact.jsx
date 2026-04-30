@@ -5,10 +5,30 @@ import portfolioData from '../data/portfolio.json';
 
 function Contact() {
   const { personalInfo, socials } = portfolioData;
+  const [formData, setFormData] = React.useState({
+    name: '',
+    message: ''
+  });
 
   const getIcon = (iconName) => {
       const Icon = Icons[iconName] || Icons.HelpCircle;
       return <Icon size={20} />;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { name, message } = formData;
+    const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
+    const body = encodeURIComponent(`Hello Srajan,\n\n${message}\n\nBest regards,\n${name}`);
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.email}&su=${subject}&body=${body}`;
+    window.open(gmailUrl, '_blank');
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   return (
@@ -31,7 +51,7 @@ function Contact() {
             <div className="relative z-10">
                 <h3 className="text-3xl font-extrabold mb-4 tracking-tight">Let's Connect</h3>
                 <p className="text-[#f6f0dd] mb-10 leading-relaxed text-sm">
-                    I'm currently looking for new opportunities in MS programs or Software Engineering roles. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                    I'm currently looking for new opportunities in Software Engineering roles. Whether you have a question or just want to say hi, I'll try my best to get back to you!
                 </p>
                 
                 <div className="space-y-6">
@@ -72,23 +92,38 @@ function Contact() {
           {/* Contact Form */}
           <div className="lg:col-span-3 p-10 lg:p-12">
             <h3 className="text-2xl font-bold mb-8 text-gray-900">Send me a message</h3>
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid md:grid-cols-2 gap-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 gap-6">
                   <div>
                       <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Name</label>
-                      <input type="text" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37] transition font-medium text-gray-900" placeholder="John Doe" />
-                  </div>
-                  <div>
-                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Email</label>
-                      <input type="email" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37] transition font-medium text-gray-900" placeholder="john@example.com" />
+                      <input 
+                        type="text" 
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37] transition font-medium text-gray-900" 
+                        placeholder="John Doe" 
+                      />
                   </div>
               </div>
               <div>
                   <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Message</label>
-                  <textarea rows="5" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37] transition font-medium text-gray-900 resize-none" placeholder="How can I help you?"></textarea>
+                  <textarea 
+                    rows="5" 
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50 focus:border-[#d4af37] transition font-medium text-gray-900 resize-none" 
+                    placeholder="How can I help you?"
+                  ></textarea>
               </div>
-              <button className="w-full sm:w-auto px-8 py-3.5 bg-[#0f172a] text-white font-bold rounded-xl hover:bg-[#1e293b] transition duration-300 flex items-center justify-center space-x-2 group">
-                  <span>Send Message</span>
+              <button 
+                type="submit"
+                className="w-full sm:w-auto px-8 py-3.5 bg-[#0f172a] text-white font-bold rounded-xl hover:bg-[#1e293b] transition duration-300 flex items-center justify-center space-x-2 group"
+              >
+                  <span>Send via Gmail</span>
                   <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
             </form>

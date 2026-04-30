@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Twitter, Mail, ArrowRight, Download } from 'lucide-react';
+import { HashLink } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 import portfolioData from '../data/portfolio.json';
 
 const Typewriter = ({ phrases, period = 2000 }) => {
@@ -40,7 +42,7 @@ function Hero() {
   const { name, image, email } = portfolioData.personalInfo;
   
   // Taglines based on prompt
-  const taglines = ["Software Engineer", "ML Enthusiast", "MS Applicant"];
+  const taglines = ["Software Engineer", "ML Enthusiast", "Full Stack Developer"];
 
   return (
     <section id="home" className="relative pt-32 pb-20 md:pt-48 md:pb-32 flex items-center min-h-[90vh] overflow-hidden container mx-auto px-4 max-w-6xl">
@@ -59,12 +61,8 @@ function Hero() {
             animate={{ opacity: 1, y: 0 }}
             className="flex flex-wrap gap-3 mb-6 justify-center lg:justify-start"
           >
-            <span className="inline-flex items-center px-3 py-1 bg-[#d4af37]/10 text-[#d4af37] text-xs sm:text-sm font-semibold rounded-full border border-[#d4af37]/20 uppercase tracking-widest">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37] mr-2 animate-pulse"></span>
-              Open to MS 2025–26
-            </span>
             <span className="inline-flex items-center px-3 py-1 bg-[#0ea5e9]/10 text-[#0ea5e9] text-xs sm:text-sm font-semibold rounded-full border border-[#0ea5e9]/20 uppercase tracking-widest">
-              Available for Internships
+              Available for Full-time roles
             </span>
           </motion.div>
 
@@ -97,7 +95,7 @@ function Hero() {
             animate={{ opacity: 1, y: 0 }}
             className="text-lg text-gray-600 mb-10 leading-relaxed max-w-xl mx-auto lg:mx-0"
           >
-            Applying to top MS CS/ML programs in the US. Passionate about building robust systems and exploring machine learning architectures. Let's create something extraordinary.
+            Building scalable web applications and solving complex problems with modern technologies. Passionate about creating robust systems and exploring machine learning architectures. Let's create something extraordinary.
           </motion.p>
           
           <motion.div 
@@ -105,11 +103,11 @@ function Hero() {
             animate={{ opacity: 1, y: 0 }}
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center"
           >
-            <a href="#projects" className="group flex items-center justify-center gap-2 px-8 py-3.5 bg-[#d4af37] text-white font-semibold rounded-full shadow-lg shadow-[#d4af37]/30 hover:bg-[#c29e2f] transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-auto">
+            <HashLink to="/#projects" smooth className="group flex items-center justify-center gap-2 px-8 py-3.5 bg-[#d4af37] text-white font-semibold rounded-full shadow-lg shadow-[#d4af37]/30 hover:bg-[#c29e2f] transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-auto">
               View Projects
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a href="/resume" className="group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 bg-white text-gray-800 font-semibold rounded-full shadow-sm hover:shadow-md border border-gray-200 transition-all duration-300 transform hover:-translate-y-1">
+            </HashLink>
+            <a href="/Resume_2026.pdf" download="Srajan_Sohani_Resume.pdf" className="group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 bg-white text-gray-800 font-semibold rounded-full shadow-sm hover:shadow-md border border-gray-200 transition-all duration-300 transform hover:-translate-y-1">
               Download Resume
               <Download size={18} className="text-gray-500 group-hover:text-gray-900" />
             </a>
