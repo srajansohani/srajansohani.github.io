@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, ArrowLeft, Code, BookOpen } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import ProjectVisualizer from './ProjectVisualizer';
 import portfolioData from '../data/portfolio.json';
 
 function ProjectDetail() {
@@ -118,6 +119,9 @@ function ProjectDetail() {
               ))}
             </div>
           </motion.div>
+
+          {/* Architecture Visualizer Section */}
+          <ProjectVisualizer projectSlug={slug} />
 
           {/* Demo Video Section */}
           {project.video && (
